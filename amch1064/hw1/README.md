@@ -45,20 +45,22 @@ Create Nginx AMI **(takes couple of minutes):**
 
 ### User terraform to deploy the servers (web + db):
 ```
-    export AMI="xxxxxx"
-    terraform init
-    terraform plan \
-    -var "aws_access_key=${AWS_ACCESS_KEY_ID}" \
-    -var "aws_secret_key=${AWS_SECRET_ACCESS_KEY}" \
-    -var "ami=${AMI}" \
-    -var "key_name=xxxxxx"
+export AMI="xxxxxx"
+
+terraform init
+
+terraform plan \
+-var "aws_access_key=${AWS_ACCESS_KEY_ID}" \
+-var "aws_secret_key=${AWS_SECRET_ACCESS_KEY}" \
+-var "ami=${AMI}" \
+-var "key_name=xxxxxx"
 ```
 ```
-    terraform apply \
-    -var "aws_access_key=${AWS_ACCESS_KEY_ID}" \
-    -var "aws_secret_key=${AWS_SECRET_ACCESS_KEY}" \
-    -var "ami=${AMI}" \
-    -var "key_name=xxxxxx"
+terraform apply \
+-var "aws_access_key=${AWS_ACCESS_KEY_ID}" \
+-var "aws_secret_key=${AWS_SECRET_ACCESS_KEY}" \
+-var "ami=${AMI}" \
+-var "key_name=xxxxxx"
 ```
 *Note the ELB_dns_name returned*  
 **Access the php page with (takes couple of minutes):**  
@@ -67,20 +69,21 @@ Create Nginx AMI **(takes couple of minutes):**
 ### To deploy Nginx inplace of Apache or vice versa:
 **Export the new AMI ID noted from step 2 to ENV variable:**
 ```
-    export AMI="xxxxxx"
-    terraform plan \
-    -var "aws_access_key=${AWS_ACCESS_KEY_ID}" \
-    -var "aws_secret_key=${AWS_SECRET_ACCESS_KEY}" \
-    -var "ami=${AMI}" \
-    -var "key_name=xxxxxx"
+export AMI="xxxxxx"
+
+terraform plan \
+-var "aws_access_key=${AWS_ACCESS_KEY_ID}" \
+-var "aws_secret_key=${AWS_SECRET_ACCESS_KEY}" \
+-var "ami=${AMI}" \
+-var "key_name=xxxxxx"
 
 ```
 ```
-    terraform apply \
-    -var "aws_access_key=${AWS_ACCESS_KEY_ID}" \
-    -var "aws_secret_key=${AWS_SECRET_ACCESS_KEY}" \
-    -var "ami=${AMI}" \
-    -var "key_name=xxxxxx"
+terraform apply \
+-var "aws_access_key=${AWS_ACCESS_KEY_ID}" \
+-var "aws_secret_key=${AWS_SECRET_ACCESS_KEY}" \
+-var "ami=${AMI}" \
+-var "key_name=xxxxxx"
 ```
 *Note the ELB_dns_name returned*  
 **Access the php page with (takes couple of minutes):**  

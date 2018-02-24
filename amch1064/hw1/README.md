@@ -30,18 +30,18 @@ export AWS_SECRET_ACCESS_KEY="xxxx"
 
 ### User Packer to create AMI:
 
-    Create Apache AMI ***(takes couple of minutes):***
+    Create Apache AMI **(takes couple of minutes):**
 ```
-        packer validate packer/aws/web-apache-server.json
-        packer build packer/aws/web-apache-server.json
+    packer validate packer/aws/web-apache-server.json
+    packer build packer/aws/web-apache-server.json
 ```
 
     Create Nginx AMI ***(takes couple of minutes):***
 ```
-        packer validate packer/aws/web-nginx-server.json
-        packer build packer/aws/web-nginx-server.json 
+    packer validate packer/aws/web-nginx-server.json
+    packer build packer/aws/web-nginx-server.json 
 ```
-*** Note the AMI ID returned ****
+** Note the AMI ID returned **
 
 ### User terraform to deploy the servers (web + db):
 ```
@@ -60,13 +60,13 @@ export AWS_SECRET_ACCESS_KEY="xxxx"
     -var "ami=${AMI}" \
     -var "key_name=xxxxxx"
 ```
-*** Note the ELB_dns_name returned ***
+** Note the ELB_dns_name returned **
 
-*** Access the php page with (takes couple of minutes):***
+** Access the php page with (takes couple of minutes):**
         http://ELB_dns_name/lab1.php
 
 ### To deploy Nginx inplace of Apache or vice versa:
-*** Export the new AMI ID noted from step 2 to ENV variable:***
+** Export the new AMI ID noted from step 2 to ENV variable:**
 ```
     export AMI="xxxxxx"
     terraform plan \
@@ -83,7 +83,7 @@ export AWS_SECRET_ACCESS_KEY="xxxx"
     -var "ami=${AMI}" \
     -var "key_name=xxxxxx"
 ```  
-*** Note the ELB_dns_name returned ***
+** Note the ELB_dns_name returned **
 
-*** Access the php page with (takes couple of minutes):***
+** Access the php page with (takes couple of minutes):**  
         http://ELB_dns_name/lab1.php

@@ -32,6 +32,28 @@ export AWS_SECRET_ACCESS_KEY="xxxx"
 
 ### main.tf
 
+This file is used for create a S3 object that will store our php file.
+The DB Server address is dynamically updated in the php file before pushing it to S3.  
+
+### vpc.tf
+
+- This file creates a custom VPC **cloud-tech** with a public subnet and a private subnet. 
+- The public subnet is **10.0.1.0/24** which is routable to the internet via NAT. 
+- The private subnet is ***10.0.2.0/24** which is not accessible from the internet and is used for iinternal communication such as DB server etc.
+
+### elb.tf
+
+- This file creates a Amazon Elastic Load Balanced with a name as **cloud-tech-lab1-elb**. 
+- The ELB servers requests only on port 80 and uses ***TCP:80** for server health check. 
+- **connection_draining** is also enabled which is required for seamless transfer between different types of web servers.  
+
+### auto-scalling.tf
+
+- This file creates a **aws_launch_configuration** called **webcluster**.
+- The launch configuration is used to spin up AMI instances and to install packages using **cloud_init**.
+- **create_before_destroy** is set to be **True** which creates new instances before destroying old instances. This is a handy feature for seamless transfer between different type of web servers **(Apache to Nginx)**.
+- The **aws_autoscaling_policy** will add more instances if the **CPU Utilization** of current AWS EC2 instances is **>60%** for a prediod of **2*120s**.
+- he **aws_autoscaling_policy** will also reduce the instances if the **CPU Utilization** of current AWS EC2 instances is **<10%** for a prediod of **2*120s**. 
 
 # Instructions on how to run
 

@@ -60,7 +60,7 @@ packer build packer/aws/web-nginx-server.json
 ```
 **export the AMI ID returned**  
 
-![Alt text](TLEN-5830/amch1064/hw1/documentation/packer_ami_id.png)
+![AMI ID](documentation/packer_ami_id.png)
 
 ```
 export AMI_NGINX="xxxxxx"

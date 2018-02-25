@@ -46,7 +46,7 @@ creates the AWS instance which takes the variables for AMI and instance type fro
 The script uses HEREDOC to install and start Apache and PHP services on the instance. 
 It also creates a PHP script named cloudtech.php which queries the database created in the previous instance.
 
-###How to run it:
+### How to run it:
 THe user first needs to set the environment variable for AWS keys as mentioned above and the pem file for SSH access if needed. 
 Below are the most basic form of commands to run the scripts:
 

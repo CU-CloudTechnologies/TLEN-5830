@@ -57,6 +57,11 @@ The DB Server address is dynamically updated in the php file before pushing it t
 
 # Instructions on how to run
 
+### Requirments
+**The scripts require the following softwares:**
+- Packer (https://www.packer.io/)
+- Terraform (https://www.terraform.io/)
+
 ### Export AWS Keys to ENV variables:
 ```
 export AWS_ACCESS_KEY_ID=xxxxxx

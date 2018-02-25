@@ -33,7 +33,7 @@ export AWS_SECRET_ACCESS_KEY="xxxx"
 ### main.tf
 
 
-## Instructions on how to run
+# Instructions on how to run
 
 ### Export AWS Keys to ENV variables:
 ```
@@ -56,10 +56,13 @@ packer build packer/aws/web-nginx-server.json
 **Note the AMI ID returned**
 
 ### Use Terraform to deploy the servers (web + db):
+*export the AMI ID noted in above step*
 ```
 export AMI="xxxxxx"
 export KEY_NAME="xxxxxx"
+```
 
+```
 terraform init
 
 terraform plan \

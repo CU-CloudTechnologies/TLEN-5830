@@ -48,7 +48,10 @@ packer validate packer/aws/web-apache-server.json
 packer build packer/aws/web-apache-server.json
 ```
 
-**export the AMI ID noted in above step**
+**Export the AMI ID returned**  
+
+![AMI ID](documentation/packer_ami_id.png)
+
 ```
 export AMI_APACHE="xxxxxx"
 ```
@@ -58,7 +61,7 @@ export AMI_APACHE="xxxxxx"
 packer validate packer/aws/web-nginx-server.json
 packer build packer/aws/web-nginx-server.json 
 ```
-**export the AMI ID returned**  
+**Export the AMI ID returned**  
 
 ![AMI ID](documentation/packer_ami_id.png)
 

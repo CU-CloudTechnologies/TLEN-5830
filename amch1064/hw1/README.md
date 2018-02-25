@@ -58,8 +58,10 @@ export AMI_APACHE="xxxxxx"
 packer validate packer/aws/web-nginx-server.json
 packer build packer/aws/web-nginx-server.json 
 ```
-**export the AMI ID returned**
+**export the AMI ID returned**  
+
 [[https://github.com/Amar-Chaudhari/TLEN-5830/amch1064/hw1/documentation/packer_ami_id.png]]
+
 ```
 export AMI_NGINX="xxxxxx"
 ```

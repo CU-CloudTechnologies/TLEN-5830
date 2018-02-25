@@ -13,9 +13,9 @@ Packer will create two AMI images:
 1. Apache web server image
 2. Nginx web server image
 
-These AMIs are used to replace current web server with a new server.
-For example, If we are currently running two **Apache servers**, we can replace them with **Nginx Servers.** 
-Creating AMI is important for seamless as AWS launch configuration will first spin up new instances and then start draining connections from the old servers that need to be deleted.
+- These AMIs are used to replace current web server with a new server.
+For example, If we are currently running two **Apache servers**, we can replace them with **Nginx Servers.**  
+- Creating AMI is important for seamless as AWS launch configuration will **first spin up new instances** and **then start draining connections from the old servers that need to be deleted.**  
 
 ## Terraform Components
 
@@ -39,7 +39,7 @@ The DB Server address is dynamically updated in the php file before pushing it t
 
 - This file creates a custom VPC **cloud-tech** with a public subnet and a private subnet. 
 - The public subnet is **10.0.1.0/24** which is routable to the internet via NAT. 
-- The private subnet is ***10.0.2.0/24** which is not accessible from the internet and is used for iinternal communication such as DB server etc.
+- The private subnet is **10.0.2.0/24** which is not accessible from the internet and is used for iinternal communication such as DB server etc.
 
 ### elb.tf
 

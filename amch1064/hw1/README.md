@@ -6,6 +6,17 @@ These set of terraform scripts will deploy a web server and a database server.
 
 Pointing your browser to ELB/lab1.php will connect you to one of the WebServer where the php script will query the DB and display the output on the screen.
 
+## Use of Packer
+
+We will use packer tool to create custom AMI from the base Amazon Linux Image.
+Packer will create two AMI images:
+1. Apache web server image
+2. Nginx web server image
+
+These AMIs are used to replace current web server with a new server.
+For example, If we are currently running two **Apache servers**, we can replace them with **Nginx Servers.** 
+Creating AMI is important for seamless as AWS launch configuration will first spin up new instances and then start draining connections from the old servers that need to be deleted.
+
 ## Terraform Components
 
 ### variables.tf
@@ -25,27 +36,29 @@ export AWS_SECRET_ACCESS_KEY="xxxx"
 ## Instructions on how to run
 
 ### Export AWS Keys to ENV variables:
-    export AWS_ACCESS_KEY_ID=xxxxxx
-    export AWS_SECRET_ACCESS_KEY=xxxx
-
-### User Packer to create AMI:
-
-Create Apache AMI **(takes couple of minutes):**
 ```
-    packer validate packer/aws/web-apache-server.json
-    packer build packer/aws/web-apache-server.json
+export AWS_ACCESS_KEY_ID=xxxxxx
+export AWS_SECRET_ACCESS_KEY=xxxx
+```
+### Packer to create AMI:
+
+#### Create Apache AMI **(takes couple of minutes):**
+```
+packer validate packer/aws/web-apache-server.json
+packer build packer/aws/web-apache-server.json
 ```
 
-Create Nginx AMI **(takes couple of minutes):**
+#### Create Nginx AMI **(takes couple of minutes):**
 ```
-    packer validate packer/aws/web-nginx-server.json
-    packer build packer/aws/web-nginx-server.json 
+packer validate packer/aws/web-nginx-server.json
+packer build packer/aws/web-nginx-server.json 
 ```
 **Note the AMI ID returned**
 
-### User terraform to deploy the servers (web + db):
+### Use Terraform to deploy the servers (web + db):
 ```
 export AMI="xxxxxx"
+export KEY_NAME="xxxxxx"
 
 terraform init
 
@@ -53,37 +66,37 @@ terraform plan \
 -var "aws_access_key=${AWS_ACCESS_KEY_ID}" \
 -var "aws_secret_key=${AWS_SECRET_ACCESS_KEY}" \
 -var "ami=${AMI}" \
--var "key_name=xxxxxx"
+-var "key_name=${KEY_NAME}"
 ```
 ```
 terraform apply \
 -var "aws_access_key=${AWS_ACCESS_KEY_ID}" \
 -var "aws_secret_key=${AWS_SECRET_ACCESS_KEY}" \
 -var "ami=${AMI}" \
--var "key_name=xxxxxx"
+-var "key_name=${KEY_NAME}"
 ```
 *Note the ELB_dns_name returned*  
 **Access the php page with (takes couple of minutes):**  
     http://ELB_dns_name/lab1.php
 
 ### To deploy Nginx inplace of Apache or vice versa:
-**Export the new AMI ID noted from step 2 to ENV variable:**
+**Export the new AMI ID noted from step 2:**
 ```
 export AMI="xxxxxx"
+export KEY_NAME="xxxxxx"
 
 terraform plan \
 -var "aws_access_key=${AWS_ACCESS_KEY_ID}" \
 -var "aws_secret_key=${AWS_SECRET_ACCESS_KEY}" \
 -var "ami=${AMI}" \
--var "key_name=xxxxxx"
-
+-var "key_name=${KEY_NAME}"
 ```
 ```
 terraform apply \
 -var "aws_access_key=${AWS_ACCESS_KEY_ID}" \
 -var "aws_secret_key=${AWS_SECRET_ACCESS_KEY}" \
 -var "ami=${AMI}" \
--var "key_name=xxxxxx"
+-var "key_name=${KEY_NAME}"
 ```
 *Note the ELB_dns_name returned*  
 **Access the php page with (takes couple of minutes):**  

@@ -4,8 +4,6 @@ resource "aws_launch_configuration" "webserver" {
   image_id = "${var.ami_id}"
   instance_type = "t2.micro"
   security_groups = ["${aws_security_group.webserver.id}"]
-  vpc_id = "${aws_vpc.default.id}"
-  subnet_id = "${aws_subnet.public.id}"
   user_data = "${data.template_file.web_setup.rendered}"
   
   lifecycle {
@@ -17,7 +15,7 @@ resource "aws_launch_configuration" "webserver" {
 
 resource "aws_autoscaling_group" "webserver" {
   launch_configuration = "${aws_launch_configuration.webserver.id}"
-  availability_zones = "${var.availability_zone}"
+  availability_zones = ["${data.aws_availability_zones.all.names}"]
   load_balancers = ["${aws_elb.balancer.name}"]
   health_check_type = "ELB"
 
@@ -38,6 +36,8 @@ data "template_file" "web_setup"{
   template = "${file("webserver.tpl")}"
 }
 
+data "aws_availability_zones" "all" {}
+
 /* This block defines the configuration for the webserver load-balancer.  It defines a health check policy and places
 instances across all AZs within the region. */
 
@@ -45,6 +45,7 @@ resource "aws_elb" "balancer" {
   name = "webserver-load-balancer"
   security_groups = ["${aws_security_group.elb.id}"]
   availability_zones = ["${data.aws_availability_zones.all.names}"]
+
 
   health_check {
     healthy_threshold = 2
@@ -98,10 +99,4 @@ resource "aws_security_group" "webserver" {
   lifecycle {
     create_before_destroy = true
   }
-}
-
-data "aws_availability_zones" "all" {}
-
-output "elb_dns_name" {
-  value = "${aws_elb.balancer.dns_name}"
 }

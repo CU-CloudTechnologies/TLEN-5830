@@ -1,8 +1,4 @@
-provider "aws" {
-	access_key = "AKIAI2UAYYRTWC2J63XQ"
-	secret_key = "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"
-	region = "${var.aws_region}"
-}
+provider "aws" {}
 
 resource "aws_vpc" "terraform1" {
 	cidr_block = "${var.vpc_cidr}"

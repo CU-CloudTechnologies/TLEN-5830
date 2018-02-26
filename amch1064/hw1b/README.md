@@ -146,7 +146,7 @@ terraform apply \
 **Access the php page with (takes couple of minutes):**  
     http://ELB_dns_name/lab1.php
 
-### Testing Seamless tranfer from Apache to Nginx
+### Testing Seamless transfer from Apache to Nginx
 
 ```
 watch curl http://ELB_dns_name/lab1.php

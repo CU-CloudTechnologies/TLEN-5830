@@ -15,13 +15,13 @@ Packer will create two AMI images:
 
 - These AMIs are used to replace current web server with a new server.
 For example, If we are currently running two **Apache servers**, we can replace them with **Nginx Servers.**  
-- Creating AMI is important for seamless as AWS launch configuration will **first spin up new instances** and **then start draining connections from the old servers that need to be deleted.**  
+- Creating AMI is important for seamless transfer as AWS launch configuration will **first spin up new instances** and **then start draining connections from the old servers that need to be deleted.**  
 
 ## Terraform Components
 
 ### variables.tf
 
-Our variables file contain all the pre-defined varilables for the infrastructure. It contains the public/private subnets and the availability zone for our instances. 
+The variables file contain all the pre-defined varilables for the infrastructure. It contains the public/private subnets and the availability zone for our instances. 
 
 We do not store AWS Access Keys in the variables file but use environment variables to get this information.
 

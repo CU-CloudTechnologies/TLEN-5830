@@ -3,6 +3,8 @@
 The goal is to have an automated deployment of a simple application that includes:
 1. Web server
 2. Database server
+3. RDS (Please note that this is currently not created in AWS)
+4. Load Balancing (Files created)
 
 Pointing your browser to the <public DNS address>/cloudtech.php of the
 Web Server, should result in a query to the mysql DB and a display of

@@ -1,0 +1,16 @@
+#host <RDS_MySQL_DB_host_name>
+host myinstance.123456789012.us-east-1.rds.amazonaws.com.
+
+#CREATE USER 'repl_user' IDENTIFIED BY '<password>';
+CREATE USER 'admin' IDENTIFIED BY 'secret';
+
+#GRANT REPLICATION CLIENT, REPLICATION SLAVE ON *.* TO 'repl_user' IDENTIFIED BY '<password>';
+GRANT REPLICATION CLIENT, REPLICATION SLAVE ON *.* TO 'admin' IDENTIFIED BY 'secret';
+
+#cat backup.sql
+
+CALL mysql.rds_set_external_master ('test', 3306,'admin', 'secret', 'mysql-bin-changelog.000031', 107, 0);
+
+CALL mysql.rds_set_external_master_gtid ('test',3306,'admin','secret','0-123-456',0);
+
+CALL mysql.rds_start_replication;

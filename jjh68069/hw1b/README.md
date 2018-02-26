@@ -12,6 +12,10 @@ With terraform downloaded, run these commands from inside the directory where al
 terraform init
 terraform plan
 terraform apply
+```
+There will be the DNS name of the location to hit the URL after everything is successfully applied.
+Visit: <DNS-Name>cloudtech.php
+```bash
 terraform destroy
 ```
 The destroy command tears down all the infrastructure you just built so that you don't get charged for anything!

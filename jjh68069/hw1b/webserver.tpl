@@ -6,6 +6,7 @@ apt install -y php php-mysqlnd php7.0-mysql
 service httpd start
 chkconfig httpd on
 
+echo "True" > /var/www/html/healthy.html
 echo "<?php" > /var/www/html/cloudtech.php
 echo "\$servername = '10.0.16.100';" >> /var/www/html/cloudtech.php
 echo "\$username = 'jason';" >> /var/www/html/cloudtech.php 

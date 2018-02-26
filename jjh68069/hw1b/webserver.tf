@@ -52,7 +52,7 @@ resource "aws_elb" "balancer" {
     unhealthy_threshold = 2
     timeout = 3
     interval = 30
-    target = "HTTP:${var.server_port}/"
+    target = "HTTP:${var.server_port}/healthy.html"
   }
 
   listener {
@@ -99,4 +99,8 @@ resource "aws_security_group" "webserver" {
   lifecycle {
     create_before_destroy = true
   }
+}
+
+output "elb_dns_name" {
+  value = "${aws_elb.balancer.dns_name}"
 }

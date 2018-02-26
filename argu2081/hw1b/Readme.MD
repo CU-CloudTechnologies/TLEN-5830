@@ -1,5 +1,5 @@
 How to Run:
-cd /terraform/source_info
+cd /hw1b/source_info
 ssh-keygen -t rsa -C "login_key" -f ./login_key
 ----> Enter a passphrase
 export AWS_ACCESS_KEY_ID="myaccesskey"

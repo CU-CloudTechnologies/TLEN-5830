@@ -1,6 +1,6 @@
-_____________________________________________________________________________________________________________________________________________
+_________________________________________________________________
 Building a WebServer and a MYSQL database on AWS using TERRAFORM
-_____________________________________________________________________________________________________________________________________________
+_________________________________________________________________
 
 This project includes a set of Terraform scripts to automate the deployment of an application. The various features of the application include:
 
@@ -10,9 +10,9 @@ This project includes a set of Terraform scripts to automate the deployment of a
 4. Load Balancing between the Servers
 5. Also includes a script to convert to an nginx webserver from an apache webserver.
 
-_____________________________________________________________________________________________________________________________________________
+_________________________________________________________________
 The various scripts included in the application are as follows:
-_____________________________________________________________________________________________________________________________________________
+_________________________________________________________________
 
 1. Variables: Includes all the variables used throughout the program. Some of the variables include VPC CIDR, Private CIDR, Public CIDR, AMI version,
    Availability zones, count to scale the number of servers, etc.
@@ -35,20 +35,20 @@ export AWS_DEFAULT_REGION="us-east-1"
 
 6. Database: Deploy a mysql database server. Only queries from the webserver are allowed. The database is deployed using the dbsetup.tpl script.
 
-_____________________________________________________________________________________________________________________________________________
+_________________________________________________________________
 Init Scripts:
-_____________________________________________________________________________________________________________________________________________
+_________________________________________________________________
 CloudInit scripts are used to initialize the Database server and the Webserver. There are two files:
 1. dbsetup.tpl: Used to setup and configure the database server
 2. websetup.tpl: Used to setup and configure the webserver
 
-_____________________________________________________________________________________________________________________________________________
+_________________________________________________________________
 How to Use the Scripts:
-_____________________________________________________________________________________________________________________________________________
+_________________________________________________________________
 terraform init
 terraform plan -out=terraform.plan
 terraform apply "terraform.plan"
-_____________________________________________________________________________________________________________________________________________
+_________________________________________________________________
 
 
 

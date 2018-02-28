@@ -31,12 +31,12 @@ data "template_file" "sqlserver_setup"{
 
 # Create a sql server
 resource "aws_instance" "sql" {
-  ami = "ami-f2d3638a"
+  ami = "${var.ami_sql}" 
   associate_public_ip_address = false
-  instance_type = "t2.micro"
+  instance_type = "${var.instance_type}"
   subnet_id = "${aws_subnet.private_subnet.id}"
   private_ip = "172.28.3.50"
-  key_name = "CloudTech"
+  key_name = "${var.ssh_key_name}"
   vpc_security_group_ids = ["${aws_security_group.database.id}"]
   user_data =  "${data.template_file.sqlserver_setup.rendered}"
   tags {

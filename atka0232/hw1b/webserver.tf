@@ -31,11 +31,11 @@ data "template_file" "webserver_setup"{
 
 # Create a web server
 resource "aws_instance" "web" {
-  ami = "ami-1ee65166"
+  ami = "${var.ami_web}"
   associate_public_ip_address = true
-  instance_type = "t2.micro"
+  instance_type = "${var.instance_type}"
   subnet_id = "${aws_subnet.public_subnet.id}"
-  key_name = "CloudTech"
+  key_name = "${var.ssh_key_name}"
   vpc_security_group_ids = ["${aws_security_group.webserver.id}"]
   count = 2
   user_data = "${data.template_file.webserver_setup.rendered}"

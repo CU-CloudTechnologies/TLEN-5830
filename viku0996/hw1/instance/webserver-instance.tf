@@ -4,7 +4,7 @@ variable "count" {
 
 resource "aws_instance" "webserver" {
   ami = "${var.ami}"
-  instance_type = "t2.micro"
+  instance_type = "${var.instance-type}"
   associate_public_ip_address = "true"
   subnet_id = "${var.public-subnet}"
   vpc_security_group_ids = ["${var.security-group-webserver}"]
@@ -41,7 +41,8 @@ resource "aws_instance" "webserver" {
     connection {
       type = "ssh"
       user = "ubuntu"
-      private_key = "${file("terraform.pem")}"   
+      private_key = "${file(${var.ssh-key-file})}"
+#      private_key = "${file("terraform.pem")}"   
     }
   }
 }

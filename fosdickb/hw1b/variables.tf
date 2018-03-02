@@ -12,10 +12,10 @@ variable "instance_type" {
 }
 variable "ssh_keyfile" {
   description = ""
-  default = "~/.ssh/griffith-ec2.pem"
+  default = "~/.ssh/cloud-ec2.pem"
 }
 variable "ssh_key_name" {
-  default = "griffith-ec2"
+  default = "cloud-ec2"
 }
 variable "public_cidr" {
   default = "10.0.1.0/24"

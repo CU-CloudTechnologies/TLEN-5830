@@ -32,7 +32,7 @@ variable "instance-type" {
 }
 
 #Select the RDS instance class
-variable "db-instance-cclass" {
+variable "db-instance-class" {
   default = "db.t2.micro"
 }
 

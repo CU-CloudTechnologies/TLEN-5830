@@ -22,7 +22,7 @@ resource "aws_instance" "webserver" {
   apt-get update -y
   apt-get install -y nginx php php-mysqlnd mysql-client php7.0-fpm
   SQL="CREATE TABLE teams (name VARCHAR(20));INSERT INTO teams (name) VALUES ('Chelsea FC');INSERT INTO teams (name) VALUES ('FC Barcelona');"
-  mysql -h ${aws_db_instance.database.address} -umaster -pmastersql mydb -e "$SQL"
+  mysql -h ${aws_db_instance.database.address} -umaster -pmastersql mydb -e "$SQL"  
   echo "<?php" >> /var/www/html/ibuiltthis.php
   echo "echo 'SERVER - ${count.index} <br> ----------------------------------------<br>';" >> /var/www/html/ibuiltthis.php
   echo "\$conn = new mysqli('${aws_db_instance.database.address}', 'master', 'mastersql', 'mydb');" >> /var/www/html/ibuiltthis.php
@@ -43,7 +43,7 @@ resource "aws_instance" "webserver" {
     connection {
       type = "ssh"
       user = "ubuntu"
-      private_key = "${file(${var.ssh-key-file})}"
+      private_key = "${var.ssh-key-file}"
 #      private_key = "${file("terraform.pem")}"   
     }
   }

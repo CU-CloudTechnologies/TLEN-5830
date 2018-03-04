@@ -1,5 +1,5 @@
 # Using Terraform to deploy AWS resources
-## Learning a basic 2-tier architecture of  public webservers behinf a load balancer and a private db server.
+## Learning a basic 2-tier architecture of  public webservers behind a load balancer and a private db server.
 
 ### Description:
 

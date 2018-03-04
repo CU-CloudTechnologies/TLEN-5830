@@ -1,4 +1,5 @@
- resource "aws_security_group" "instance" {
+#Configure the security groups for allowing HTTP and SSH access to the webservers 
+  resource "aws_security_group" "instance" {
   name = "terraform-security-group"
   vpc_id = "${aws_vpc.default.id}"
   
@@ -55,8 +56,8 @@
 }
 
 
-
-resource "aws_elb" "default" {
+#Cofiguring the Load balancer to listen to requests on port 80 and load balance between the different requests
+  resource "aws_elb" "default" {
   name               = "foobar-terraform-elb"
   #availability_zones = ["us-west-2a"]
   security_groups	 = ["${aws_security_group.instance.id}"]
@@ -85,6 +86,7 @@ resource "aws_elb" "default" {
   }
 }
 
+#Configure the Nginx Webserver to run on an EC2 instance. The count variable will be used to spin up the required number of webservers for scaling
   resource "aws_instance" "nginx" {
   count = "${var.count_aws_instance}"
   ami	        = "${var.ami_id}"
@@ -97,18 +99,20 @@ resource "aws_elb" "default" {
     create_before_destroy = "True"
   }
   
-  
+#This piece will be used to establish the connection with the spinned up instances for remote-exec operation  
   connection {
     user        = "ubuntu"
     private_key = "${file(var.private_key_path)}"    
   }
   
+#Used to create temporry files on the webservers which will be later used to change the configuration files of the nginx webserver as well as the index.html
   provisioner remote-exec {
 	inline = ["touch /home/ubuntu/to_copy.html",
 	"touch /home/ubuntu/default"
 	]
   }
 
+#This is the PHP script which will be used by the nginx server to query the database for getting the results. This file is copied to the temporary file to_copy.html
   provisioner "file" {
 	content = <<-EOF
 	<?php
@@ -143,13 +147,15 @@ resource "aws_elb" "default" {
 	
 	destination = "/home/ubuntu/to_copy.html"
   }
-  
+
+#Copy the local file nginx_config to the remote location.  
   provisioner "file" {
   source = "nginx_config.txt"
   destination = "/home/ubuntu/default"
   
   }
-  
+
+#Script which wil be run on the remote location and will update the instance to run nginx server as well as insert values in the MySQL database.
   user_data = <<-EOF
   #!/bin/bash
   sudo apt-get update -y

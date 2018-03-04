@@ -10,6 +10,17 @@ variable "instance_type" {
 	default = "t2.micro"
 }
 
+variable "cidr_block" {
+	default = "172.16.0.0/16"
+}
+
+variable "aws_subnet_public" {
+	default = "172.16.16.0/20"
+}
+
+variable "aws_subnet_private" {
+	default = "172.16.32.0/20"
+}
 
 variable "aws_access_key" {}
 variable "aws_secret_key" {}

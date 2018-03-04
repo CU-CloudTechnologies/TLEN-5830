@@ -19,6 +19,3 @@ USAGE:
 		d. Copy paste the link in the browser of choice and add /myhomepage.php to the end. 
 		
 5. Name of the page => <PUBLIC_DNS_OF_LOAD_BALANCER>/myhomepage.php 
-
-
-this is a test line

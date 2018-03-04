@@ -21,7 +21,7 @@ variable "key_pair"{
 export aws_access_key="xxxxxxxxxxxxxxxxxxxxx"
 export aws_secret_key="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 ```
-######Or change the terraform.tfvars
+###### Or change the terraform.tfvars
 
 ```
 aws_access_key = "xxxxx"

@@ -1,6 +1,6 @@
 #Configure a VPC for the 2-tier architecture 
   resource "aws_vpc" "default" {
-  cidr_block = "{var.cidr_block}"
+  cidr_block = "${var.cidr_block}"
   enable_dns_hostnames = "True"
   
   tags {
@@ -24,7 +24,7 @@
   resource "aws_subnet" "public" {
   vpc_id                  = "${aws_vpc.default.id}"
   availability_zone		  =  "us-west-2b"
-  cidr_block              = "{var.aws_subnet_public}"
+  cidr_block              = "${var.aws_subnet_public}"
   map_public_ip_on_launch = true
   
   tags {
@@ -36,7 +36,7 @@
   resource "aws_subnet" "private" {
   availability_zone		  = "us-west-2a"
   vpc_id                  = "${aws_vpc.default.id}"
-  cidr_block              = "{var.aws_subnet_private}"
+  cidr_block              = "${var.aws_subnet_private}"
   
    tags {
   Name = "Private"

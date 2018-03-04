@@ -1,4 +1,4 @@
-
+#To create the subnet group to be used by the database instance
   resource "aws_db_subnet_group" "default" {
   name       = "main"
   subnet_ids = ["${aws_subnet.private.id}","${aws_subnet.public.id}"]
@@ -7,7 +7,8 @@
     Name = "My DB subnet group"
   }
 }
-  
+
+#Create the db instance and configure it to be a mysql server
   resource "aws_db_instance" "default" {
   allocated_storage    = 10
   storage_type         = "gp2"

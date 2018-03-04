@@ -1,8 +1,8 @@
-aws_access_key = ""
+aws_access_key = "xxxx"
 
-aws_secret_key = ""
+aws_secret_key = "xxxx"
 
-private_key_path = "KEYS.pem"
+private_key_path = "xxxx"
 
 db_instance_password= "jesal1993"
 

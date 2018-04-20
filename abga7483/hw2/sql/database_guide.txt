@@ -1,0 +1,4 @@
+//Commands to set up the first container
+docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=password -d mysql:latest
+
+docker exec -i some-mysql mysql -uroot -ppassword < database_create.sql

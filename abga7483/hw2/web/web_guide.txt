@@ -1,0 +1,5 @@
+docker build -t myphpapplication .
+
+docker run -p 8080:80 -d myphpapplication
+
+//then go to http://127.0.0.1:8080/ to see the database values

@@ -1,0 +1,1 @@
+SELECT * FROM recipes_database.recipes;

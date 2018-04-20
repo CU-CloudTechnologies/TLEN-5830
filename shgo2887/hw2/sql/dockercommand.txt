@@ -1,0 +1,3 @@
+//setting up container two
+docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:latest
+docker exec -i some-mysql mysql -uroot -pmy-secret-pw < test.sql
